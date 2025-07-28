@@ -1,3 +1,4 @@
+// Default sleep hours for each day of the week
 const getSleepHours = day => {
     switch (day) {
         case 'Monday':
@@ -27,16 +28,17 @@ const getSleepHours = day => {
     return day;
 }
 
+// Total sleep hours for the week
 const getActualSleepHours = () => getSleepHours('Monday') + getSleepHours('Tuesday') + getSleepHours('Wednesday') + getSleepHours('Thursday') + getSleepHours('Friday') + getSleepHours('Saturday') + getSleepHours('Sunday');
 
-const getIdealSleepHours = () => {
-    const idealHours = 8;
-    return idealHours * 7;
-}
+// Total ideal sleep hours for the week
+const getIdealSleepHours = idealHours => idealHours * 7;
 
+// Calculate sleep debt for the week
 const calculateSleepDebt = () => {
     const actualSleepHours = getActualSleepHours();
-    const idealSleepHours = getIdealSleepHours();
+    // Set your ideal daily sleep hours
+    const idealSleepHours = getIdealSleepHours(8);
     const hourDiff = Math.abs(actualSleepHours - idealSleepHours);
     const unitLabel = hourDiff === 1 ? 'hour' : 'hours';
     if (actualSleepHours === idealSleepHours) {
